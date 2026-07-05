@@ -11,6 +11,7 @@ anchor_evidence: >
   (application.links / project.links / resource.links) — operator-controlled configuration, not
   end-user input. The "unbounded input" precondition requires the attacker to author the expression.
 ground_truth_source: no maintainer exploitability claim; upstream bumped to v1.17.0 (#22651), users pointed to "A word about security scanners" (#23249). Expert adjudication, pilot-report-argocd-v3.0.0 §6.
+confidence: low
 trap: >
   Caveat REQUIRED — the verdict rests on the argocd-cm ConfigMap being operator-controlled. The
   evidence file must record the revisit trigger: multi-tenant deployments that grant ConfigMap write

@@ -11,6 +11,7 @@ anchor_evidence: >
   interface-dispatch over-approximation. No code path can issue a multi-GB single write, and an
   adversary cannot induce one.
 ground_truth_source: upstream golang advisory precondition. No Argo CD maintainer statement (zero tracker hits) — expert adjudication, pilot-report-argocd-v3.0.0 §5.
+confidence: medium
 trap: >
   Interface-dispatch over-approximation (Trap #5) — the govulncheck trace THROUGH io.Copy is a lie;
   a skill that treats the static trace as a real path convicts falsely. Dismissing the trace triggers

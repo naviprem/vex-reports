@@ -8,7 +8,7 @@ side of the loop; it holds the answers and must never be visible to a Runner ses
 
 | Path | Role |
 |---|---|
-| `suite/<CANONICAL-ID>__<component>__<image>.md` | One expected-verdict entry per finding per component copy (protocol §1 format). Seeded from pilots 1–2 (13 findings); grows every pilot. |
+| `suite/<CANONICAL-ID>__<component>__<image>.md` | One expected-verdict entry per finding per component copy (protocol §1 format), including a `confidence` field (`high`/`medium`/`low`) recording how far the ground truth is independent of the adjudicator — it gates the −10 (protocol §4). Seeded from pilots 1–2 (13 findings); grows every pilot. |
 | `runs/<pilot-slug>/` | A Runner's `vex-out/` copied back here for grading. One dir per pilot run. |
 | `learnings-log.md` | Append-only: one entry per miss (symptom → root cause → rule → diff → regression result → accepted/reverted). |
 | `target-matrix.md` | The §6 coverage matrix; each pilot's cell assignments + Phase A/C candidate picks. |

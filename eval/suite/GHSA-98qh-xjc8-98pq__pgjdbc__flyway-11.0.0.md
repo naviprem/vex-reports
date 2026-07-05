@@ -9,6 +9,7 @@ anchor_evidence: >
   client CPU. Flyway connects to databases its operator configures — the "adversary" would have to be your own
   migration target, or a MITM on an unencrypted link. Wrong side of the trust boundary for the standard deployment.
 ground_truth_source: expert adjudication 2026-07-05; pilot-report-flyway-11.0.0.
+confidence: low
 trap: >
   Caveat REQUIRED — the verdict rests on a trusted DB server + TLS-in-transit assumption. The evidence file must
   record the revisit trigger: connecting over untrusted networks without TLS re-opens the exposure (then upgrade the
