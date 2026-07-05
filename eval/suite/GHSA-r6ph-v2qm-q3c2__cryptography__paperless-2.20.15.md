@@ -12,6 +12,7 @@ anchor_evidence: >
   APIs, no EllipticCurve/SECT usage in app code (the only "public key" hits are unrelated comments).
   cryptography is used transitively (Django, etc.); paperless never loads untrusted SECT-curve public keys.
 ground_truth_source: GHSA advisory + absent API usage; expert adjudication 2026-07-05.
+confidence: medium
 trap: >
   cryptography is a ubiquitous transitive dep, so "it's used → affected" over-triages. The vuln needs a
   specific API + a rare curve family + attacker-controlled key material — none present. not_affected via

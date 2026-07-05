@@ -9,6 +9,7 @@ anchor_evidence: >
   spoofing over a network." No vulnerable symbol, no precondition, no attack mechanism. Installed 12.6.3 sits
   in the affected range (12.6.0 → fixed 12.6.5). With nothing to falsify, G1 forbids not_affected.
 ground_truth_source: MSRC advisory (sparse); expert adjudication, pilot-report-flyway-11.0.0.
+confidence: high
 trap: >
   THE sparse-advisory trap (Trap #3; SKILL F4 sparse-advisory rule). The advisory names nothing to falsify, so
   the ladder degrades to version-range logic → affected + fix version. A skill that SYNTHESIZES a precondition it

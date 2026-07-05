@@ -13,6 +13,7 @@ anchor_evidence: >
   (docker/.../svc-webserver/run:17). `--ws` = granian handles the WS upgrade; paperless.asgi routes a
   "websocket" ProtocolTypeRouter (paperless/asgi.py:18-21). Default 1 worker → single request = full outage.
 ground_truth_source: GHSA advisory + image webserver run-script + asgi.py; expert adjudication 2026-07-05.
+confidence: high
 trap: >
   The WS route is wrapped in `AuthMiddlewareStack` (asgi.py:21), tempting a "requires auth → not_affected"
   call. But the granian crash happens PRE-ASGI / PRE-auth, so app-layer auth cannot mitigate it. Also

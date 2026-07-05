@@ -13,6 +13,7 @@ anchor_evidence: >
   pre-provisioned, build-time, trusted corpora from that local dir. The vulnerable extract path is never
   on the execute path at runtime.
 ground_truth_source: GHSA advisory + classifier.py:395; expert adjudication 2026-07-05.
+confidence: medium
 trap: >
   Critical/RCE severity tempts an `affected` on severity alone. But the vulnerable component (the
   downloader) is never invoked — data is read locally, not downloaded. Don't confuse paperless's own

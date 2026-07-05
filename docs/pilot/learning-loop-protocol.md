@@ -33,7 +33,7 @@ The plugin's deterministic machinery (`fetch_advisory.py`, `build_csaf.py`, `val
 | `skills/vex-draft/SKILL.md` | git, versioned | The artifact under improvement. Every accepted edit = one commit with the motivating failure in the message. |
 | `references/justification-taxonomy.md`, `references/evidence-format.md` | git | In scope for loop edits. |
 | **Guardrails section (G1–G6)** | inside SKILL.md, marked `<!-- FROZEN -->` | **Not editable by the loop.** Changes require a human PRD-level decision, never a loop iteration. |
-| `eval/suite/<CVE-or-GHSA>__<image>.md` | git, one file per finding | Expected verdict + justification flag + decisive rung + anchor evidence + adjudication source (maintainer statement / expert review). Seeded with the 13 pilot findings. |
+| `eval/suite/<CVE-or-GHSA>__<image>.md` | git, one file per finding | Expected verdict + justification flag + decisive rung + anchor evidence + adjudication source (maintainer statement / expert review) + `confidence` in that source. Seeded with the 13 pilot findings. |
 | `eval/learnings-log.md` | git, append-only | One entry per miss: symptom → root cause → generalized rule → SKILL.md diff → regression result → accepted/reverted. |
 
 ### Regression-suite entry format
@@ -45,10 +45,21 @@ expected_justification: vulnerable_code_not_in_execute_path
 decisive_rung: F5 (state falsification)
 anchor_evidence: zero occurrences of activateDefaultTyping/enableDefaultTyping/@JsonTypeInfo in non-test source
 ground_truth_source: expert adjudication 2026-07-05 (no maintainer statement exists — see pilot-report-flyway §F4b)
+confidence: low
 trap: second copy of same CVE (shaded in databricks-jdbc) must get a DIFFERENT verdict — do not let dedup merge them
 ```
 
 The `trap` field records what a regressing skill would plausibly get wrong — it's what makes the entry a real regression test rather than a trophy.
+
+The `confidence` field records how far the ground truth is *independent of the adjudicator* — because the answer key is only as trustworthy as its source, and a wrong `not_affected` key is the most dangerous cell in the suite (it can reward a Runner's false `not_affected` and teach the Improver to break the skill). It gates how a verdict mismatch is scored (§4):
+
+| `confidence` | Ground-truth basis | On a Runner mismatch |
+|---|---|---|
+| `high` | Independent of me: owner/maintainer non-exploitability statement; distro tracker fix-released or acknowledged-vulnerable; vendor advisory version-range. Also every `affected` (conservative G1 default) and honest `under_investigation` (both cannot *be* a false `not_affected`). | Trusted — may assign the −10. |
+| `medium` | Expert adjudication anchored to an upstream-advisory precondition **plus** a deterministic, re-checkable anchor (grep-absent usage, config flag, version). | Usable — the cited anchor arbitrates; if the Runner's evidence defeats the anchor, re-adjudicate. |
+| `low` | Pure expert judgment with no external corroboration: reachability that overrides a distro `no-dsa`/`postponed`, a caveat-dependent trust boundary, or a "trusted transitive/operator-controlled" assumption that could flip. | **Must not** assign the −10 alone — a mismatch triggers re-adjudication of the *entry* first (§4). |
+
+Assign `confidence` at adjudication time, from the source — not from how sure you feel. Prefer to promote a `low` entry by finding an independent corroborator (a maintainer statement, a KEV/exploit-in-the-wild note) rather than by re-asserting the same reasoning.
 
 ## 2. Roles — three separated contexts
 
@@ -109,6 +120,8 @@ The loop's fitness function must make guessing `not_affected` the worst possible
 | Tier-3 copies collapsed into one verdict | **−5** per hidden copy | The dedup trap; counts per M2's counting rule |
 
 Do **not** score coverage (% resolved) as a positive term. Coverage is an observability metric (M2), not an optimization target.
+
+**Confidence gate on the −10.** The −10 is the one cell that can be triggered by a *wrong answer key* rather than a wrong Runner (§1). So it is gated by the entry's `confidence`: a mismatch against a `high` entry scores −10 directly; against a `medium` entry the cited anchor arbitrates (the Runner keeps the −10 only if its evidence doesn't defeat the anchor); against a `low` entry, **re-adjudicate the entry before scoring** — a `low` key may never hand out a −10 on its own reasoning. When re-adjudication shows the suite was wrong, fix the entry (per §3 A.4) and score against the corrected verdict; that fix is itself logged as learning. This gate applies only to the −10 direction — `affected` and `under_investigation` keys are conservative and score normally regardless of confidence.
 
 ## 5. Acceptance gate for a SKILL.md edit
 

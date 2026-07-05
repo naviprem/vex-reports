@@ -12,6 +12,7 @@ anchor_evidence: >
   paperless's own internal WebSocket/queue messages over a trusted Redis link — not attacker-controlled —
   and does not reuse an Unpacker after an error.
 ground_truth_source: GHSA advisory + absent app usage; expert adjudication 2026-07-05.
+confidence: low
 trap: >
   Two independent preconditions (the reuse-after-error coding pattern AND untrusted input) both fail. Don't
   mark affected just because msgpack is present and deserialization "sounds dangerous" — the transitive

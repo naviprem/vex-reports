@@ -12,6 +12,7 @@ anchor_evidence: >
   134,143 (also documents/converters.py, barcodes.py, utils.py). Image.open() auto-detects format, so a
   crafted FITS payload reaching any of these is decoded. Ingested files are semi-untrusted.
 ground_truth_source: GHSA advisory + Image.open call sites; expert adjudication 2026-07-05.
+confidence: high
 trap: >
   DoS-severity, not RCE — lower priority than pdfminer/granian, but still affected: no format allowlist
   gates Image.open here, so FITS is reachable from untrusted input. Caveat: exploit requires the crafted

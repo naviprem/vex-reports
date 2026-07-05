@@ -10,6 +10,7 @@ anchor_evidence: >
   means decompiling a third-party fat JAR. Per G1, no positive evidence → no not_affected. Mitigating context
   recorded: the driver only class-loads when a Databricks URL is used; remediation is a driver update.
 ground_truth_source: expert adjudication 2026-07-05; pilot-report-flyway-11.0.0. First honest under_investigation residue across both pilots.
+confidence: high
 trap: >
   THE dedup trap (pairs with GHSA-j3rv-43j4-c7qm__jackson-databind__flyway-lib): SAME canonical GHSA, SAME
   image, DIFFERENT verdict. A pipeline that dedups "one CVE → one verdict" gets one copy wrong; if it stamps

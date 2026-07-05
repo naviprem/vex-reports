@@ -13,6 +13,7 @@ anchor_evidence: >
   `ocrmypdf~=16.12.0`), which paperless runs on every ingested document. Documents arrive from
   semi-untrusted sources (consume folder, email). Untrusted PDF → ocrmypdf → pdfminer CMap path.
 ground_truth_source: GHSA advisory + uv.lock dependency graph; expert adjudication 2026-07-05.
+confidence: high
 trap: >
   THE transitive-dependency trap. A skill that greps the app source for "pdfminer", finds nothing, and
   concludes `component_not_present` / not_affected commits a program-killing −10 on an RCE. The component

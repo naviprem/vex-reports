@@ -13,6 +13,7 @@ anchor_evidence: >
   workaround the advisory names — and uses XMLParser, not the vulnerable iterparse/ETCompatXMLParser. The
   XXE precondition provably cannot hold.
 ground_truth_source: GHSA advisory + validators.py:187; expert adjudication 2026-07-05.
+confidence: medium
 trap: >
   paperless DOES call etree.parse() on untrusted uploads, so a shallow "lxml is used on user input →
   affected" is wrong — the load-bearing detail is the explicit `resolve_entities=False` on the parser

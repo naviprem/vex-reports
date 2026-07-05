@@ -12,6 +12,7 @@ anchor_evidence: >
   not imported in src/. paperless has no code that brotli-decompresses untrusted responses. grype matched
   the brotli 1.1.0 library because brotli 1.2.0 shipped a co-mitigation, but the vulnerable consumer is absent.
 ground_truth_source: GHSA advisory text (Scrapy) + lockfile (no scrapy); expert adjudication 2026-07-05.
+confidence: medium
 trap: >
   Advisory-vs-matched-package mismatch: grype flags the brotli LIBRARY, but the CVE is about SCRAPY's use
   of it. A skill that reads "brotli decompression DoS" and marks affected without noticing the advisory

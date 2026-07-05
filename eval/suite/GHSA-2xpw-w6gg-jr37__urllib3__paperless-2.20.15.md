@@ -12,6 +12,7 @@ anchor_evidence: >
   is transitive under requests/httpx; paperless's outbound HTTP goes to operator-configured endpoints
   (webhooks, optional tika/gotenberg), not arbitrary attacker-controlled servers streamed via urllib3.
 ground_truth_source: GHSA advisory + absent streaming usage; expert adjudication 2026-07-05.
+confidence: low
 trap: >
   Caveat REQUIRED: verdict rests on outbound targets being operator-configured/trusted. Revisit if a
   feature is added that streams+decompresses responses from user-supplied URLs (e.g. remote document

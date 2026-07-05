@@ -12,6 +12,7 @@ anchor_evidence: >
   (advisory's own High attack-complexity note). grep of src/ shows no `jwt.decode(` call at all; pyjwt is
   transitive. The specific dangerous configuration provably does not occur.
 ground_truth_source: GHSA advisory (precondition note) + absent jwt.decode; expert adjudication 2026-07-05.
+confidence: medium
 trap: >
   A grep for `algorithms=` FALSE-matches paperless's own `MATCHING_ALGORITHMS` enum (documents/models.py:54),
   which is document-matching config, NOT JWT algorithms. Don't anchor on a coincidental identifier match —

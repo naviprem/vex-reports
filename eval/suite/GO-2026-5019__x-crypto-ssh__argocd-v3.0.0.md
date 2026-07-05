@@ -11,6 +11,7 @@ anchor_evidence: >
   git servers (util/git/ssh.go) and never authenticates users' security keys. Server-role flaw in a
   client-only usage → adversary cannot reach the vulnerable role.
 ground_truth_source: upstream golang advisory preconditions. NO Argo CD maintainer statement exists (zero tracker hits) — expert adjudication, pilot-report-argocd-v3.0.0 §4 + owner-verification table (⚪ unverifiable at app tier, the normal case).
+confidence: medium
 trap: >
   No owner statement will ever exist — the VEX doc IS the owner statement. The client-vs-server
   role falsification is the decisive anchor and is sufficient; a skill that downgrades to

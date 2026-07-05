@@ -10,6 +10,7 @@ anchor_evidence: >
   possible, which the advisory does not implicate. Deterministic anchor (inventory) + advisory precondition, no
   code reading required.
 ground_truth_source: upstream advisory precondition + deterministic inventory anchor; pilot-report-flyway-11.0.0.
+confidence: medium
 trap: >
   The decisive precondition is an ABSENT enabling component (tcnative), provable cheaply from the full inventory
   (F3) — a skill that jumps to code reading or reachability misses the cheaper airtight anchor. Also: netty

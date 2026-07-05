@@ -12,6 +12,7 @@ anchor_evidence: >
   core — the sink is not gated by an optional feature. paperless uses dynamic `**`-expanded filters
   (documents/filters.py:138,142,144,497,506), so the ORM code path is exercised.
 ground_truth_source: Django security release (CVE-2025-64459); expert adjudication 2026-07-05.
+confidence: high
 trap: >
   Tempting not_affected: the visible `**` sinks in filters.py all append a fixed suffix
   (f"{field}__id__in") so none can produce a bare `_connector` key. But proving NO path across the whole

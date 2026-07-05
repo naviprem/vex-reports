@@ -12,6 +12,7 @@ anchor_evidence: >
   paperless serves HTTP via granian (docker/.../svc-webserver/run:17), not Tornado's HTTPServer, so the
   vulnerable multipart parser never runs.
 ground_truth_source: GHSA advisory + zero tornado imports + granian run-script; expert adjudication 2026-07-05.
+confidence: medium
 trap: >
   A web-framework CVE on a package that IS installed but whose server is NOT the one running. Presence of
   tornado in the SBOM does not imply its HTTPServer executes — the actual server is granian. Verify which

@@ -11,6 +11,7 @@ anchor_evidence: >
   stock `new JsonMapper()` / `new TomlMapper()` selected by file extension, consuming operator-controlled
   local config files. Two independent kill conditions (feature never enabled; input operator-controlled).
 ground_truth_source: expert adjudication 2026-07-05 — no maintainer exploitability statement exists (flyway#4251 only replies "updated in X.Y.Z"). pilot-report-flyway-11.0.0.
+confidence: low
 trap: >
   THE dedup trap (pairs with GHSA-j3rv-43j4-c7qm__jackson-databind__databricks-shaded): the SECOND copy of
   this same canonical CVE — jackson 2.16.0 shaded inside databricks-jdbc — must get a DIFFERENT verdict

@@ -12,6 +12,7 @@ anchor_evidence: >
   downstream RBAC uses resource/action claims, not the HTTP/2 path. The only FullMethod
   matches (server/server.go:943,957) gate log redaction, not authorization → precondition (a) absent.
 ground_truth_source: Argo CD maintainer statement argoproj/argo-cd#26932 (same reasoning, same code cited); pilot-report-argocd-v3.0.0 §3 + owner-verification.
+confidence: high
 trap: >
   Two traps. (1) Reachable ≠ exploitable — govulncheck says the routing code is reachable;
   a skill that convicts on reachability alone emits a false `affected`. (2) G6 — the dismissed
